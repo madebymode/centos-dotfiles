@@ -1,0 +1,8 @@
+# This file gets copied to /etc/sudoers.d/ by init/20_centos_yum.sh
+
+# Command aliases.
+Cmnd_Alias YUM = /usr/bin/yum
+
+# Members of the sudo and admin groups can run these commands without password.
+%sudo ALL=(ALL) ALL, NOPASSWD:YUM
+%admin ALL=(ALL) ALL, NOPASSWD:YUM
