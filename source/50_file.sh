@@ -36,6 +36,17 @@ function md() {
   mkdir -p "$@" && cd "$@"
 }
 
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+
+# `cat` with beautiful colors. requires: sudo easy_install -U Pygments
+alias c='pygmentize -O style=monokai -f console256 -g'
+
+# Fix NPM
+alias fixnpm='sudo chown -R $(whoami):admin $(npm config get prefix)'
+
 # Fast directory switching
 mkdir -p $DOTFILES/caches/z
 _Z_NO_PROMPT_COMMAND=1
