@@ -42,7 +42,7 @@ sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/x86_64/ius-rele
 
 sudo yum update -y -q
 e_header "Removing old mysql-libs"
-yum remove mysql-libs -q -y
+sudo yum remove mysql-libs -q -y
 
 # Install YUM packages.
 packages=(
