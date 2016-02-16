@@ -41,8 +41,6 @@ sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/x86_64/epel-rel
 sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/x86_64/ius-release-1.0-11.ius.el6.noarch.rpm
 
 sudo yum update -y -q
-e_header "Removing old mysql-libs"
-sudo yum remove mysql-libs -q -y
 
 # Install YUM packages.
 packages=(

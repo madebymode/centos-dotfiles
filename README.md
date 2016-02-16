@@ -83,7 +83,7 @@ There's a lot of stuff that requires admin access via `sudo`, so be warned that 
 ### Actual installation (for MODE devs)
 
 ```sh
-bash -c "$(curl -fsSL https://github.com/madebymode/centos-dotfiles)" && source ~/.bashrc
+bash -c "$(curl -fsSL https://raw.github.com/madebymode/centos-dotfiles/master/bin/dotfiles)" && source ~/.bashrc
 ```
 
 ## Aliases and Functions
