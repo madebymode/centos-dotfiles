@@ -60,8 +60,6 @@ packages=(
   yum-plugin-replace
 )
 
-packages=($(setdiff "${packages[*]}" "$(dpkg --get-selections | grep -v deinstall | awk '{print $1}')"))
-
 if (( ${#packages[@]} > 0 )); then
   e_header "Installing YUM packages: ${packages[*]}"
   for package in "${packages[@]}"; do
