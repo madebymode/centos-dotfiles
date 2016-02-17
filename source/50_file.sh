@@ -60,6 +60,14 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 # Fix NPM
 alias fixnpm='sudo chown -R $(whoami):admin $(npm config get prefix)'
 
+# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
+# the `.git` directory, listing directories first. The output gets piped into
+# `less` with options to preserve color and line numbers, unless the output is
+# small enough for one screen.
+function tre() {
+  tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+
 # Fast directory switching
 mkdir -p $DOTFILES/caches/z
 _Z_NO_PROMPT_COMMAND=1

@@ -113,3 +113,105 @@ function npm_latest() {
     echo -e '\nAll dependencies are @latest version.'
   fi
 }
+
+
+# Search the current directory and all parent directories for a gruntfile.
+function _grunt_file() {
+  local curpath="$PWD"
+  while [[ "$curpath" ]]; do
+    for grunt_file in "$curpath/"{G,g}runtfile.{js,coffee}; do
+      if [[ -e "$grunt_file" ]]; then
+        echo "$grunt_file"
+        return
+      fi
+    done
+    curpath="${curpath%/*}"
+  done
+  return 1
+}
+
+# Enable grunt bash autocompletion.
+function _grunt_completions() {
+  # The currently-being-completed word.
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  # The current gruntfile, if it exists.
+  local grunt_file="$(_grunt_file)"
+  # The current grunt version, available tasks, options, etc.
+  local grunt_info="$(grunt --version --verbose 2>/dev/null)"
+  # Options and tasks.
+  local opts="$(echo "$grunt_info" | awk '/Available options: / {$1=$2=""; print $0}')"
+  local compls="$(echo "$grunt_info" | awk '/Available tasks: / {$1=$2=""; print $0}')"
+  # Only add -- or - options if the user has started typing -
+  [[ "$cur" == -* ]] && compls="$compls $opts"
+  # Tell complete what stuff to show.
+  COMPREPLY=($(compgen -W "$compls" -- "$cur"))
+}
+
+complete -o default -F _grunt_completions grunt
+
+
+# Search the current directory and all parent directories for a gulpfile.
+function _gulp_file() {
+  local curpath="$PWD"
+  while [[ "$curpath" ]]; do
+    for gulp_file in "$curpath/"{G,g}ulpfile.{js,coffee}; do
+      if [[ -e "$gulp_file" ]]; then
+        echo "$gulp_file"
+        return
+      fi
+    done
+    curpath="${curpath%/*}"
+  done
+  return 1
+}
+
+# Search the current directory and all parent directories for a gulptasksfile.
+function _gulp_tasks() {
+  local curpath="$PWD"
+  while [[ "$curpath" ]]; do
+    for gulp_tasks in "$curpath/".gulp_tasks; do
+      if [[ -e "$gulp_tasks" ]]; then
+        echo "$gulp_tasks"
+        return
+      fi
+    done
+    curpath="${curpath%/*}"
+  done
+  return 1
+}
+
+# Enable gulp bash autocompletion.
+function _gulp_completions() {
+  # The currently-being-completed word.
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  # The current gulpfile, if it exists.
+  local gulp_file="$(_gulp_file)"
+  # The current gulp_tasks file, if it exists.
+  local gulp_tasks="$(_gulp_tasks)"
+
+  #exit function if we don't have a gulpfile
+  if [ ! -e "$gulp_file" ] ; then
+    return
+  fi
+
+  #if we don't find a .gulp_tasks file create one, add the tasks and pull it's path back in
+  if [ ! -e "$gulp_tasks" ] ; then
+    touch ".gulp_tasks"
+    #save tasks
+    echo $(gulp --tasks-simple) > .gulp_tasks
+    local gulp_tasks=$(realpath .gulp_tasks)
+  else
+    if test $gulp_file -nt $gulp_tasks; then
+      # gulpfile is newer than our gulp_tasks file, we need to update it
+      echo $(gulp --tasks-simple) > $gulp_tasks
+    fi
+  fi
+
+  #now let's get those damn tasks
+  local compls=$(cat $gulp_tasks)
+
+  # Tell complete what stuff to show.
+  COMPREPLY=($(compgen -W "$compls" -- "$cur"))
+}
+
+complete -o default -F _gulp_completions gulp

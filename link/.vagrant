@@ -1,0 +1,3 @@
+if [ -d "$LOCAL_WORKING_DIR" ]; then
+  cd $LOCAL_WORKING_DIR
+fi
