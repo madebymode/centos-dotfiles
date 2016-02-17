@@ -64,7 +64,13 @@ _Tested in CentOS 6.7_
 
 Why? Because I (troyxmccall) often completely break this repo while updating. Which means that if I do that and you run the `dotfiles` command, your home directory will burst into flames, and you'll have to go buy a new computer. No, not really, but it will be very messy.
 
-### Actual installation (for you)
+### Actual installation (for MODE devs)
+
+```sh
+bash -c "$(curl -fsSL https://raw.github.com/madebymode/centos-dotfiles/master/bin/dotfiles)" && source ~/.bashrc
+```
+
+### Installation (for non-MODE devs)
 
 1. Fork this repo
 1. Open a terminal/shell and do this:
@@ -78,12 +84,6 @@ bash -c "$(curl -fsSL https://raw.github.com/$github_user/centos-dotfiles/master
 Since you'll be using the [dotfiles][dotfiles] command on subsequent runs, you'll only have to export the `github_user` variable for the initial install.
 
 There's a lot of stuff that requires admin access via `sudo`, so be warned that you might need to enter your password here or there.
-
-### Actual installation (for MODE devs)
-
-```sh
-bash -c "$(curl -fsSL https://raw.github.com/madebymode/centos-dotfiles/master/bin/dotfiles)" && source ~/.bashrc
-```
 
 ## Aliases and Functions
 To keep things easy, the `~/.bashrc` and `~/.bash_profile` files are extremely simple, and should never need to be modified. Instead, add your aliases, functions, settings, etc into one of the files in the `source` subdirectory, or add a new file. They're all automatically sourced when a new shell is opened. Take a look, I have [a lot of aliases and functions](source). I even have a [fancy prompt](source/50_prompt.sh) that shows the current directory, time and current git/svn repo status.
@@ -103,9 +103,8 @@ In addition to the aforementioned [dotfiles][dotfiles] script, there are a few o
 ## Inspiration
 <https://github.com/gf3/dotfiles>  
 <https://github.com/mathiasbynens/dotfiles>  
-(and 15+ years of accumulated crap)
+<https://github.com/cowboy/dotfiles>
 
 ## License
 
 Licensed under the MIT license.  
-<>

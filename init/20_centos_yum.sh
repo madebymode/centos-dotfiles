@@ -41,16 +41,24 @@ e_header "detecting if you're running 32 or 64-bit"
 e_header "Installing Additional RPMs (Epel and iUS)"
 
 dist="x86_64"
+rpm_dist="x86_64"
 
 if [is_i686]; then
-  dist="i386"
+  echo "you are running i686"
+  dist="i686"
+  rpm_dist="i386"
 fi
 
-sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${dist}/epel-release-6-5.noarch.rpm
-sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${dist}/ius-release-1.0-11.ius.el6.noarch.rpm
-
+sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${rpm_dist}/epel-release-6-5.noarch.rpm
+sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${rpm_dist}/ius-release-1.0-11.ius.el6.noarch.rpm
 
 sudo yum update -y -q
+
+#remove old mysql libs if needed
+if [ ! "$(rpm -qa | grep -P "mysql5.*u.*\.centos6\.${dist}")" ]; then
+  e_header "removing mysql-libs from base image"
+  sudo yum remove mysql-libs -y
+fi
 
 # Install YUM packages.
 packages=(
@@ -79,10 +87,11 @@ if (( ${#packages[@]} > 0 )); then
   done
 fi
 
-#update git-extras
-e_header "Updating Git to v2.7"
-sudo yum replace git --replace-with=git2u -y -q
-
+#update git
+if [ ! "$(rpm -qa | grep -P "git2u.*\.centos6\.${dist}")" ]; then
+  e_header "Updating Git to v2.7"
+  sudo yum replace git --replace-with=git2u -y -q
+fi
 # Install Git Extras
 if [[ ! "$(type -P git-extras)" ]]; then
   e_header "Installing Git Extras"
