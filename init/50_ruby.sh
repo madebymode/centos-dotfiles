@@ -1,12 +1,9 @@
-# CentOS-only stuff. Abort if not CentOS.
-is_centos || return 1
-
 # Initialize rbenv.
 source $DOTFILES/source/50_ruby.sh
 
 # Install Ruby.
 if [[ "$(type -P rbenv)" ]]; then
-  versions=(2.3.0))
+  versions=(2.3.0)
 
   rubies=($(setdiff "${versions[*]}" "$(rbenv whence ruby)"))
   if (( ${#rubies[@]} > 0 )); then
