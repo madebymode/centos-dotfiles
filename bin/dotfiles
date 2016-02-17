@@ -55,11 +55,6 @@ function is_i686() {
   [[ "$(cat /etc/issue 2> /dev/null)" =~ i686 ]] || return 1
 }
 
-function is_x86_64() {
-    [[ "$(cat /etc/issue 2> /dev/null)" =~ x86_64 ]] || return 1
-}
-
-
 # Remove an entry from $PATH
 # Based on http://stackoverflow.com/a/2108540/142339
 function path_remove() {
