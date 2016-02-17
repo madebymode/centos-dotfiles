@@ -43,7 +43,7 @@ e_header "Installing Additional RPMs (Epel and iUS)"
 dist="x86_64"
 
 if [is_i686]; then
-  dist="i686"
+  dist="i386"
 fi
 
 sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${dist}/epel-release-6-5.noarch.rpm
