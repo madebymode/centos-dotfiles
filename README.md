@@ -2,6 +2,17 @@
 
 CentOS dotfiles.
 
+These dotfiles provision and install a typical dev environment on CentOs 6.x for MODE developers. It includes
+
+1. PHP 5.6
+2. MySQL 5.6
+3. Apache 2.2
+4. Nginx 1.0.5
+5. Ruby 2.3.0 (Managed by rbenv)
+6. Node 5.6 (manage by nave)
+7. Default gems (compass, sass, sass-globbing, rubocop)
+8. Default node modules (bower, grunt, gulp)
+
 ## About this project
 
 The command is [dotfiles][dotfiles], and this is our "centos-dotfiles" Git repo.
@@ -57,12 +68,6 @@ If you modify things and notice a bug or an improvement, [file an issue](https:/
 You should at least update/upgrade YUM with `sudo yum update -y` first.
 
 _Tested in CentOS 6.7_
-
-### Heed this critically important warning before you install
-
-**If you're not a mode developer, please _do not_ install dotfiles directly from this repo!**
-
-Why? Because I (troyxmccall) often completely break this repo while updating. Which means that if I do that and you run the `dotfiles` command, your home directory will burst into flames, and you'll have to go buy a new computer. No, not really, but it will be very messy.
 
 ### Actual installation (for MODE devs)
 
