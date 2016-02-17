@@ -66,7 +66,6 @@ Why? Because I (troyxmccall) often completely break this repo while updating. Wh
 
 ### Actual installation (for you)
 
-1. [Read my gently-worded note](#heed-this-critically-important-warning-before-you-install)
 1. Fork this repo
 1. Open a terminal/shell and do this:
 
@@ -97,22 +96,9 @@ In addition to the aforementioned [dotfiles][dotfiles] script, there are a few o
 * Look through the [bin](bin) subdirectory for a few more.
 
 ## Prompt
-I think [my bash prompt](source/50_prompt.sh) is awesome. It shows git and svn repo status, a timestamp, error exit codes, and even changes color depending on how you've logged in.
 
-Git repos display as **[branch:flags]** where flags are:
 
-**?** untracked files  
-**!** changed (but unstaged) files  
-**+** staged files
-
-SVN repos display as **[rev1:rev2]** where rev1 and rev2 are:
-
-**rev1** last changed revision  
-**rev2** revision
-
-Check it out:
-
-![awesome bash prompt](http://farm8.staticflickr.com/7142/6754488927_563dd73553_b.jpg)
+![bash prompt](https://cldup.com/aXKm0MbHVW-2000x2000.png)
 
 ## Inspiration
 <https://github.com/gf3/dotfiles>  
