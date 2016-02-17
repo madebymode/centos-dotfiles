@@ -1,3 +1,6 @@
+# CentOS-only stuff. Abort if not CentOS.
+is_centos || return 1
+
 # Backups, swaps and undos are stored here.
 mkdir -p $DOTFILES/caches/vim
 

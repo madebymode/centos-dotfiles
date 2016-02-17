@@ -1,3 +1,6 @@
+# CentOS-only stuff. Abort if not CentOS.
+is_centos || return 1
+
 # Load nave- and npm-related functions.
 source $DOTFILES/source/50_node.sh
 

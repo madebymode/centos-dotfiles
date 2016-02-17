@@ -1,3 +1,6 @@
+# CentOS-only stuff. Abort if not CentOS.
+is_centos || return 1
+
 # Initialize rbenv.
 source $DOTFILES/source/50_ruby.sh
 

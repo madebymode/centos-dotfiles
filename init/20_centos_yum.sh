@@ -36,9 +36,22 @@ fi
 e_header "Updating YUM"
 sudo yum update -y -q
 
+e_header "detecting if you're running 32 or 64-bit"
+
 e_header "Installing Additional RPMs (Epel and iUS)"
-sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/x86_64/epel-release-6-5.noarch.rpm
-sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/x86_64/ius-release-1.0-11.ius.el6.noarch.rpm
+
+
+if [is_i686]; then
+  bit="i686"
+fi
+
+if [is_x86_64]; then
+  bit="x86_64"
+fi
+
+sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${bit}/epel-release-6-5.noarch.rpm
+sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${bit}/ius-release-1.0-11.ius.el6.noarch.rpm
+
 
 sudo yum update -y -q
 
