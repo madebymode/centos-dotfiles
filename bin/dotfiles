@@ -40,7 +40,7 @@ function assert() {
 
 # OS detection
 function is_osx() {
-  [[ "$OSTYPE" =~ ^darwin ]] || echo "you tried to install this on OSX ya dummy" return 0;
+  [[ "$OSTYPE" =~ ^darwin ]] || echo "you tried to install this on OSX ya dummy" return 1;
 }
 function is_centos() {
   [[ "$(cat /etc/issue 2> /dev/null)" =~ CentOS ]] || return 1
