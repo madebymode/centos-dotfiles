@@ -1,4 +1,8 @@
 bundler
 awesome_print
 pry
-lolcat
+compass
+sass
+sass-globbing
+json
+rubocop

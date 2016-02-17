@@ -18,10 +18,21 @@ else
   alias lsd='CLICOLOR_FORCE=1 ll | grep --color=never "^d"'
 fi
 
-# Easier navigation: .., ..., -
-alias ..='cd ..'
-alias ...='cd ../..'
-alias -- -='cd -'
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# Prevent common typos
+alias cd..="cd .."
+
+alias where=which # sometimes i forget
+alias whereis=which
+
+alias hosts='sudo $EDITOR /etc/hosts'   #quick add
 
 # File size
 alias fs="stat -f '%z bytes'"
@@ -30,8 +41,11 @@ alias df="df -h"
 # Aliasing eachdir like this allows you to use aliases/functions as commands.
 alias eachdir=". eachdir"
 
+# `cat` with beautiful colors. requires: sudo easy_install -U Pygments
+alias c='pygmentize -O style=monokai -f console256 -g'
+
 # Create a new directory and enter it
-function md() {
+function mkd() {
   mkdir -p "$@" && cd "$@"
 }
 

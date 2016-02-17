@@ -55,8 +55,10 @@ packages=(
   httpd-devel
   gcc
   php56u-pear
+  php56u-fpm
   htop
   tree
+  nginx
   yum-plugin-replace
 )
 
