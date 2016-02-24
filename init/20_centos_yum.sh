@@ -38,16 +38,20 @@ sudo yum update -y -q
 
 e_header "detecting if you're running 32 or 64-bit"
 
-e_header "Installing Additional RPMs (Epel and iUS)"
-
-dist="x86_64"
-rpm_dist="x86_64"
-
-if [is_i686]; then
-  echo "you are running i686"
+MACHINE_TYPE="$(uname -m)"
+if [ ${MACHINE_TYPE} == 'x86_64' ]; then
+  # 64-bit stuff here
+  dist="x86_64"
+  rpm_dist="x86_64"
+  echo "64 yeah boi"
+else
+  # 32-bit stuff here
   dist="i686"
   rpm_dist="i386"
+  echo "32-biter"
 fi
+
+e_header "Installing Additional RPMs (Epel and iUS)"
 
 sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${rpm_dist}/epel-release-6-5.noarch.rpm
 sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${rpm_dist}/ius-release-1.0-11.ius.el6.noarch.rpm
