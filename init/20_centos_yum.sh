@@ -82,6 +82,9 @@ packages=(
   tree
   nginx
   yum-plugin-replace
+  openssl-devel
+  readline-devel
+  zlib-devel
 )
 
 if (( ${#packages[@]} > 0 )); then
