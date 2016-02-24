@@ -59,7 +59,7 @@ sudo rpm -Uvh http://dl.iuscommunity.org/pub/ius/stable/Redhat/6/${rpm_dist}/ius
 sudo yum update -y -q
 
 #remove old mysql libs if needed
-if [ ! "$(rpm -qa | grep -P "mysql5.*u.*\.centos6\.${dist}")" ]; then
+if [ ! "$(rpm -qa | grep -P "mysql5.*u.*\.${dist}")" ]; then
   e_header "removing mysql-libs from base image"
   sudo yum remove mysql-libs -y
 fi
