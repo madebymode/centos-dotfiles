@@ -85,6 +85,7 @@ packages=(
   openssl-devel
   readline-devel
   zlib-devel
+  vim
 )
 
 if (( ${#packages[@]} > 0 )); then
