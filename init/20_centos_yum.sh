@@ -108,3 +108,11 @@ if [[ ! "$(type -P git-extras)" ]]; then
     sudo make install
   )
 fi
+#Phusion Passenger
+sudo yum install -y epel-release pygpgme curl
+# Add their el6 YUM repository
+sudo curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo
+# Install Passenger + Apache module
+sudo yum install -y mod_passenger
+# Install Passenger + Nginx
+sudo yum install -y nginx passenger
