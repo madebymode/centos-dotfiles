@@ -280,7 +280,16 @@ fi
 
 # Initialize.
 if [[ ! -d $DOTFILES ]]; then
-  # $DOTFILES directory doesn't exist? Clone it!
+  # $DOTFILES directory doesn't exist, let's do some stuff
+
+  sudo /etc/init.d/iptables stop
+  sudo /etc/init.d/ip6tables stop
+  sudo chkconfig iptables off
+  sudo chkconfig ip6tables off
+  sudo cp /etc/selinux/config /etc/selinux/config.bak
+  sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/selinux/config
+
+  # clone dotfiles for the first time
   new_dotfiles_install=1
   prompt_delay=15
   e_header "Downloading dotfiles"
