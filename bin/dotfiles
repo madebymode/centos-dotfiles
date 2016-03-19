@@ -282,12 +282,18 @@ fi
 if [[ ! -d $DOTFILES ]]; then
   # $DOTFILES directory doesn't exist, let's do some stuff
 
-  sudo /etc/init.d/iptables stop
-  sudo /etc/init.d/ip6tables stop
-  sudo chkconfig iptables off
-  sudo chkconfig ip6tables off
-  sudo cp /etc/selinux/config /etc/selinux/config.bak
-  sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/selinux/config
+  read -N 1 -t $prompt_delay -p "Turn off IPTables and SELINUX? (Needed for Vagrant Boxes) [y/N] " no_sec; echo
+  if [[ "$no_sec" =~ [Yy] ]]; then
+    e_header "Disabling SELinux and IPTables"
+    sudo /etc/init.d/iptables stop
+    sudo /etc/init.d/ip6tables stop
+    sudo chkconfig iptables off
+    sudo chkconfig ip6tables off
+    sudo cp /etc/selinux/config /etc/selinux/config.bak
+    sudo sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/selinux/config
+  else
+    echo "Skipping."
+  fi
 
   # clone dotfiles for the first time
   new_dotfiles_install=1
