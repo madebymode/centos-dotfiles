@@ -86,6 +86,7 @@ packages=(
   readline-devel
   zlib-devel
   vim
+  wget
 )
 
 if (( ${#packages[@]} > 0 )); then
