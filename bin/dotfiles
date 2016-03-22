@@ -282,6 +282,8 @@ fi
 if [[ ! -d $DOTFILES ]]; then
   # $DOTFILES directory doesn't exist, let's do some stuff
 
+  prompt_delay=15
+
   read -N 1 -t $prompt_delay -p "Turn off IPTables and SELINUX? (Needed for Vagrant Boxes) [y/N] " no_sec; echo
   if [[ "$no_sec" =~ [Yy] ]]; then
     e_header "Disabling SELinux and IPTables"
@@ -297,7 +299,6 @@ if [[ ! -d $DOTFILES ]]; then
 
   # clone dotfiles for the first time
   new_dotfiles_install=1
-  prompt_delay=15
   e_header "Downloading dotfiles"
   git clone --recursive git://github.com/madebymode/centos-dotfiles.git $DOTFILES
   cd $DOTFILES
