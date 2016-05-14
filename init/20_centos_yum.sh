@@ -68,6 +68,7 @@ fi
 packages=(
   httpd
   mysql56u-server
+  mysql56u-devel
   php56u
   php56u-mysql
   php56u-gd
